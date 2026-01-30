@@ -10,6 +10,6 @@ namespace RentACarApp.Application.Interfaces
         Task<T> GetByIdAsync(int id);
         Task CreateAsync(T entity);
         Task UpdateAsync(T entity);
-        Task RemoveAsync(int id);
+        Task RemoveAsync(T entity);
     }
 }

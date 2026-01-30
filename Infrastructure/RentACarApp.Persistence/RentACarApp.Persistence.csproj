@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\RentACarApp.Application\RentACarApp.Application.csproj" />
     <ProjectReference Include="..\..\Core\RentACarApp.Domain\RentACarApp.Domain.csproj" />
   </ItemGroup>
 
