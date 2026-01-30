@@ -18,4 +18,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\RentACarApp.Persistence\RentACarApp.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>
