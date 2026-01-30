@@ -7,6 +7,6 @@
     <Project Path="Infrastructure/RentACarApp.Persistence/RentACarApp.Persistence.csproj" Id="4305487c-bde0-4e86-9a04-3983bcc40031" />
   </Folder>
   <Folder Name="/Presentation/">
-    <Project Path="Presentation/RentACarApp.WebApi/RentACarApp.WebApi.csproj" Id="f0d60043-97f8-4083-85f3-c2fd1f31b712" />
+    <Project Path="Presentation/RentACarApp.WebApi/RentACarApp.WebApi.csproj" Id="67f08675-c119-4fae-b85b-91f263f790d5" />
   </Folder>
 </Solution>
