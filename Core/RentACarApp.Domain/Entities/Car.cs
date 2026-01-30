@@ -25,5 +25,8 @@ namespace RentACarApp.Domain.Entities
         // yakıt tipi
         public string FuelType { get; set; }
         public string BigImageUrl { get; set; }
+
+        public List<CarFeature> CarFeatures { get; set; }
+        public List<CarDescription> CarDescriptions { get; set; }
     }
 }
