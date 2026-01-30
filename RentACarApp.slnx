@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/Core/">
+    <Project Path="Core/RentACarApp.Application/RentACarApp.Application.csproj" Id="1fcf08c9-0ec9-4d73-ad26-649d07d262dc" />
     <Project Path="Core/RentACarApp.Domain/RentACarApp.Domain.csproj" />
   </Folder>
   <Folder Name="/Infrastructure/">
