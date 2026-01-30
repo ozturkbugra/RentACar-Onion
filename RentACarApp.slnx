@@ -1,1 +1,5 @@
-<Solution />
+<Solution>
+  <Folder Name="/Core/">
+    <Project Path="Core/RentACarApp.Domain/RentACarApp.Domain.csproj" />
+  </Folder>
+</Solution>
