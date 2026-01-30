@@ -7,10 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Features\CQRS\Commands\" />
-    <Folder Include="Features\CQRS\Handlers\" />
-    <Folder Include="Features\CQRS\Results\" />
-    <Folder Include="Features\CQRS\Queries\" />
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RentACarApp.Domain\RentACarApp.Domain.csproj" />
   </ItemGroup>
 
 </Project>
