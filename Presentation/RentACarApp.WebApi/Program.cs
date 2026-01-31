@@ -4,8 +4,10 @@ using RentACarApp.Application.Features.CQRS.Handlers.BrandHandlers;
 using RentACarApp.Application.Features.CQRS.Handlers.CarHandlers;
 using RentACarApp.Application.Features.Mappings;
 using RentACarApp.Application.Interfaces;
+using RentACarApp.Application.Interfaces.CarInterfaces;
 using RentACarApp.Persistence.Context;
 using RentACarApp.Persistence.Repositories;
+using RentACarApp.Persistence.Repositories.CarRepositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +20,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<RentACarAppContext>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped<ICarRepository, CarRepository>();
 
 builder.Services.AddScoped<GetAboutQueryHandler>();
 builder.Services.AddScoped<GetAboutByIdQueryHandler>();
@@ -42,6 +45,7 @@ builder.Services.AddScoped<GetCarByIdQueryHandler>();
 builder.Services.AddScoped<CreateCarCommandHandler>();
 builder.Services.AddScoped<UpdateCarCommandHandler>();
 builder.Services.AddScoped<RemoveCarCommandHandler>();
+builder.Services.AddScoped<GetCarWithBrandQueryHandler>();
 
 builder.Services.AddAutoMapper(typeof(AboutMapping).Assembly);
 builder.Services.AddAutoMapper(typeof(BannerMapping).Assembly);

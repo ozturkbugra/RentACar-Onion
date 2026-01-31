@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RentACarApp.Application.Features.Mappings
 {
-    public class CarMapping: Profile
+    public class CarMapping : Profile
     {
         public CarMapping()
         {
@@ -18,7 +18,9 @@ namespace RentACarApp.Application.Features.Mappings
             CreateMap<Car, GetCarByIdQueryResult>();
             CreateMap<CreateCarCommand, Car>();
             CreateMap<UpdateCarCommand, Car>();
-
+            CreateMap<Car, GetCarWithBrandQueryResult>()
+                        .ForMember(dest => dest.BrandName,
+                                   opt => opt.MapFrom(src => src.Brand.Name));
         }
     }
 }
