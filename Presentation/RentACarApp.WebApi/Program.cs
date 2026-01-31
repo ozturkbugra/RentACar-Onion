@@ -2,6 +2,8 @@ using RentACarApp.Application.Features.CQRS.Handlers.AboutHandlers;
 using RentACarApp.Application.Features.CQRS.Handlers.BannerHandlers;
 using RentACarApp.Application.Features.CQRS.Handlers.BrandHandlers;
 using RentACarApp.Application.Features.CQRS.Handlers.CarHandlers;
+using RentACarApp.Application.Features.CQRS.Handlers.CategoryHandlers;
+using RentACarApp.Application.Features.CQRS.Handlers.ContactHandlers;
 using RentACarApp.Application.Features.Mappings;
 using RentACarApp.Application.Interfaces;
 using RentACarApp.Application.Interfaces.CarInterfaces;
@@ -47,10 +49,24 @@ builder.Services.AddScoped<UpdateCarCommandHandler>();
 builder.Services.AddScoped<RemoveCarCommandHandler>();
 builder.Services.AddScoped<GetCarWithBrandQueryHandler>();
 
+builder.Services.AddScoped<GetCategoryQueryHandler>();
+builder.Services.AddScoped<GetCategoryByIdQueryHandler>();
+builder.Services.AddScoped<CreateCategoryCommandHandler>();
+builder.Services.AddScoped<UpdateCategoryCommandHandler>();
+builder.Services.AddScoped<RemoveCategoryCommandHandler>();
+
+builder.Services.AddScoped<GetContactQueryHandler>();
+builder.Services.AddScoped<GetContactByIdQueryHandler>();
+builder.Services.AddScoped<CreateContactCommandHandler>();
+builder.Services.AddScoped<UpdateContactCommandHandler>();
+builder.Services.AddScoped<RemoveContactCommandHandler>();
+
 builder.Services.AddAutoMapper(typeof(AboutMapping).Assembly);
 builder.Services.AddAutoMapper(typeof(BannerMapping).Assembly);
 builder.Services.AddAutoMapper(typeof(BrandMapping).Assembly);
 builder.Services.AddAutoMapper(typeof(CarMapping).Assembly);
+builder.Services.AddAutoMapper(typeof(CategoryMapping).Assembly);
+builder.Services.AddAutoMapper(typeof(ContactMapping).Assembly);
 
 var app = builder.Build();
 
