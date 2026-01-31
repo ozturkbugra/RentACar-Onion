@@ -23,8 +23,8 @@ namespace RentACarApp.Application.Features.CQRS.Handlers.BannerHandlers
 
         public async Task Handle(CreateBannerCommand command)
         {
-            var entity = _mapper.Map<Banner>(command);
-            await _repository.CreateAsync(entity);
+            var value = _mapper.Map<Banner>(command);
+            await _repository.CreateAsync(value);
         }
     }
 }
