@@ -1,4 +1,5 @@
 using RentACarApp.Application.Features.CQRS.Handlers.AboutHandlers;
+using RentACarApp.Application.Features.CQRS.Handlers.BannerHandlers;
 using RentACarApp.Application.Features.Mappings;
 using RentACarApp.Application.Interfaces;
 using RentACarApp.Persistence.Context;
@@ -22,9 +23,14 @@ builder.Services.AddScoped<CreateAboutCommandHandler>();
 builder.Services.AddScoped<UpdateAboutCommandHandler>();
 builder.Services.AddScoped<RemoveAboutCommandHandler>();
 
-
+builder.Services.AddScoped<GetBannerQueryHandler>();
+builder.Services.AddScoped<GetBannerByIdQueryHandler>();
+builder.Services.AddScoped<CreateBannerCommandHandler>();
+builder.Services.AddScoped<UpdateBannerCommandHandler>();
+builder.Services.AddScoped<RemoveBannerCommandHandler>();
 
 builder.Services.AddAutoMapper(typeof(AboutMapping).Assembly);
+builder.Services.AddAutoMapper(typeof(BannerMapping).Assembly);
 
 var app = builder.Build();
 
