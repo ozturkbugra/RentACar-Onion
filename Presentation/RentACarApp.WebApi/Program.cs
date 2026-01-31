@@ -1,5 +1,6 @@
 using RentACarApp.Application.Features.CQRS.Handlers.AboutHandlers;
 using RentACarApp.Application.Features.CQRS.Handlers.BannerHandlers;
+using RentACarApp.Application.Features.CQRS.Handlers.BrandHandlers;
 using RentACarApp.Application.Features.Mappings;
 using RentACarApp.Application.Interfaces;
 using RentACarApp.Persistence.Context;
@@ -29,8 +30,15 @@ builder.Services.AddScoped<CreateBannerCommandHandler>();
 builder.Services.AddScoped<UpdateBannerCommandHandler>();
 builder.Services.AddScoped<RemoveBannerCommandHandler>();
 
+builder.Services.AddScoped<GetBrandQueryHandler>();
+builder.Services.AddScoped<GetBrandByIdQueryHandler>();
+builder.Services.AddScoped<CreateBrandCommandHandler>();
+builder.Services.AddScoped<UpdateBrandCommandHandler>();
+builder.Services.AddScoped<RemoveBrandCommandHandler>();
+
 builder.Services.AddAutoMapper(typeof(AboutMapping).Assembly);
 builder.Services.AddAutoMapper(typeof(BannerMapping).Assembly);
+builder.Services.AddAutoMapper(typeof(BrandMapping).Assembly);
 
 var app = builder.Build();
 
