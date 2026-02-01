@@ -62,14 +62,6 @@ builder.Services.AddScoped<CreateContactCommandHandler>();
 builder.Services.AddScoped<UpdateContactCommandHandler>();
 builder.Services.AddScoped<RemoveContactCommandHandler>();
 
-builder.Services.AddAutoMapper(typeof(AboutMapping).Assembly);
-builder.Services.AddAutoMapper(typeof(BannerMapping).Assembly);
-builder.Services.AddAutoMapper(typeof(BrandMapping).Assembly);
-builder.Services.AddAutoMapper(typeof(CarMapping).Assembly);
-builder.Services.AddAutoMapper(typeof(CategoryMapping).Assembly);
-builder.Services.AddAutoMapper(typeof(ContactMapping).Assembly);
-builder.Services.AddAutoMapper(typeof(FeatureMapping).Assembly);
-
 builder.Services.AddApplicationServices();
 
 var app = builder.Build();
