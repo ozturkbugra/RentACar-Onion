@@ -3,6 +3,9 @@
     <Project Path="Core/RentACarApp.Application/RentACarApp.Application.csproj" Id="1fcf08c9-0ec9-4d73-ad26-649d07d262dc" />
     <Project Path="Core/RentACarApp.Domain/RentACarApp.Domain.csproj" />
   </Folder>
+  <Folder Name="/Frontends/">
+    <Project Path="Frontends/RentACarApp.WebUI/RentACarApp.WebUI.csproj" Id="2c059b20-66b3-4071-95db-b1e2ff02206d" />
+  </Folder>
   <Folder Name="/Infrastructure/">
     <Project Path="Infrastructure/RentACarApp.Persistence/RentACarApp.Persistence.csproj" Id="4305487c-bde0-4e86-9a04-3983bcc40031" />
   </Folder>
