@@ -23,6 +23,10 @@ namespace RentACarApp.Application.Features.Mediator.Handlers.FeatureHandlers
         public async Task Handle(RemoveFeatureCommand request, CancellationToken cancellationToken)
         {
             var value = await _repository.GetByIdAsync(request.Id);
+
+            if (value == null)
+                throw new Exception("Feature bulunamadı.");
+
             await _repository.RemoveAsync(value);
         }
     }
