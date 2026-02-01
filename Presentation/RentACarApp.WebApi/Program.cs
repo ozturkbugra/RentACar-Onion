@@ -7,6 +7,7 @@ using RentACarApp.Application.Features.CQRS.Handlers.ContactHandlers;
 using RentACarApp.Application.Features.Mappings;
 using RentACarApp.Application.Interfaces;
 using RentACarApp.Application.Interfaces.CarInterfaces;
+using RentACarApp.Application.Services;
 using RentACarApp.Persistence.Context;
 using RentACarApp.Persistence.Repositories;
 using RentACarApp.Persistence.Repositories.CarRepositories;
@@ -67,6 +68,9 @@ builder.Services.AddAutoMapper(typeof(BrandMapping).Assembly);
 builder.Services.AddAutoMapper(typeof(CarMapping).Assembly);
 builder.Services.AddAutoMapper(typeof(CategoryMapping).Assembly);
 builder.Services.AddAutoMapper(typeof(ContactMapping).Assembly);
+builder.Services.AddAutoMapper(typeof(FeatureMapping).Assembly);
+
+builder.Services.AddApplicationServices();
 
 var app = builder.Build();
 
