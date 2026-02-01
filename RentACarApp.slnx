@@ -4,6 +4,7 @@
     <Project Path="Core/RentACarApp.Domain/RentACarApp.Domain.csproj" />
   </Folder>
   <Folder Name="/Frontends/">
+    <Project Path="Frontends/RentACarApp.Dto/RentACarApp.Dto.csproj" Id="ca459811-f479-4549-a474-4d6c95f152ab" />
     <Project Path="Frontends/RentACarApp.WebUI/RentACarApp.WebUI.csproj" Id="2c059b20-66b3-4071-95db-b1e2ff02206d" />
   </Folder>
   <Folder Name="/Infrastructure/">
