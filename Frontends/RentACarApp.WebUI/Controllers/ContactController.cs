@@ -29,7 +29,7 @@ namespace RentACarApp.WebUI.Controllers
             var response = await client.PostAsync("https://localhost:7066/api/Contacts", stringContent);
             if(response.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index", "About");
+                return RedirectToAction("Index", "Default");
             }
             return View();
         }

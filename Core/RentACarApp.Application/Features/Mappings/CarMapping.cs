@@ -21,6 +21,9 @@ namespace RentACarApp.Application.Features.Mappings
             CreateMap<Car, GetCarWithBrandQueryResult>()
                         .ForMember(dest => dest.BrandName,
                                    opt => opt.MapFrom(src => src.Brand.Name));
+            CreateMap<Car, GetLast5CarsWithBrandQueryResult>()
+                        .ForMember(dest => dest.BrandName,
+                                   opt => opt.MapFrom(src => src.Brand.Name));
         }
     }
 }
