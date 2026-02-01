@@ -6,4 +6,27 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\site\.DS_Store" />
+    <None Include="wwwroot\site\css\.DS_Store" />
+    <None Include="wwwroot\site\css\bootstrap\.DS_Store" />
+    <None Include="wwwroot\site\css\css\.DS_Store" />
+    <None Include="wwwroot\site\fonts\.DS_Store" />
+    <None Include="wwwroot\site\fonts\flaticon\.DS_Store" />
+    <None Include="wwwroot\site\fonts\flaticon\font\.DS_Store" />
+    <None Include="wwwroot\site\fonts\ionicons\fonts\.DS_Store" />
+    <None Include="wwwroot\site\images\.DS_Store" />
+    <None Include="wwwroot\site\js\.DS_Store" />
+    <None Include="wwwroot\site\scss\.DS_Store" />
+    <None Include="wwwroot\site\scss\bootstrap\.DS_Store" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.23" />
+  </ItemGroup>
+
 </Project>
