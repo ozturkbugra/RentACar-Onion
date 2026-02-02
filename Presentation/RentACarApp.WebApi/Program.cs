@@ -6,11 +6,13 @@ using RentACarApp.Application.Features.CQRS.Handlers.CategoryHandlers;
 using RentACarApp.Application.Features.CQRS.Handlers.ContactHandlers;
 using RentACarApp.Application.Features.Mappings;
 using RentACarApp.Application.Interfaces;
+using RentACarApp.Application.Interfaces.BlogInterfaces;
 using RentACarApp.Application.Interfaces.CarInterfaces;
 using RentACarApp.Application.Services;
 using RentACarApp.Persistence.Context;
 using RentACarApp.Persistence.Repositories;
 using RentACarApp.Persistence.Repositories.CarRepositories;
+using RentACarApp.Persistence.Repositories.NewFolder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +26,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<RentACarAppContext>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<ICarRepository, CarRepository>();
+builder.Services.AddScoped<IBlogRepository, BlogRepository>();
 
 builder.Services.AddScoped<GetAboutQueryHandler>();
 builder.Services.AddScoped<GetAboutByIdQueryHandler>();

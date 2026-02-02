@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RentACarApp.Application.Features.CQRS.Handlers.CarHandlers;
 using RentACarApp.Application.Features.Mediator.Commands.BlogCommands;
 using RentACarApp.Application.Features.Mediator.Queries.BlogQueries;
 
@@ -51,5 +52,14 @@ namespace RentACarApp.WebApi.Controllers
             await _mediator.Send(new RemoveBlogCommand(id));
             return Ok("Blog silindi");
         }
+
+        [HttpGet("GetLast3BlogsWithAuthors")]
+        public async Task<IActionResult> GetLast3BlogsWithAuthors()
+        {
+            var values = await _mediator.Send(new GetLast3BlogsWithAuthorsQuery());
+            return Ok(values);
+        }
+
+
     }
 }

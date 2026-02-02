@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using RentACarApp.Application.Features.CQRS.Results.CarResults;
 using RentACarApp.Application.Features.Mediator.Commands.BlogCommands;
 using RentACarApp.Application.Features.Mediator.Results.BlogResults;
 using RentACarApp.Domain.Entities;
@@ -18,6 +19,9 @@ namespace RentACarApp.Application.Features.Mappings
             CreateMap<Blog, GetBlogByIdQueryResult>();
             CreateMap<CreateBlogCommand, Blog>();
             CreateMap<UpdateBlogCommand, Blog>();
+            CreateMap<Blog, GetLast3BlogsWithAuthorsQueryResult>()
+                        .ForMember(dest => dest.AuthorName,
+                                   opt => opt.MapFrom(src => src.Author.Name));
         }
     }
 }
