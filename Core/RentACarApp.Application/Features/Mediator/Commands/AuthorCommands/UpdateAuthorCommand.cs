@@ -10,8 +10,8 @@ namespace RentACarApp.Application.Features.Mediator.Commands.AuthorCommands
     public class UpdateAuthorCommand : IRequest
     {
         public int AuthorID { get; set; }
-        public int Name { get; set; }
-        public int ImageUrl { get; set; }
-        public int Description { get; set; }
+        public string Name { get; set; }
+        public string ImageUrl { get; set; }
+        public string Description { get; set; }
     }
 }
