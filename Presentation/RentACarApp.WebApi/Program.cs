@@ -8,9 +8,11 @@ using RentACarApp.Application.Features.Mappings;
 using RentACarApp.Application.Interfaces;
 using RentACarApp.Application.Interfaces.BlogInterfaces;
 using RentACarApp.Application.Interfaces.CarInterfaces;
+using RentACarApp.Application.Interfaces.CarPricingInterfaces;
 using RentACarApp.Application.Services;
 using RentACarApp.Persistence.Context;
 using RentACarApp.Persistence.Repositories;
+using RentACarApp.Persistence.Repositories.CarPricingRepositories;
 using RentACarApp.Persistence.Repositories.CarRepositories;
 using RentACarApp.Persistence.Repositories.NewFolder;
 
@@ -27,6 +29,7 @@ builder.Services.AddScoped<RentACarAppContext>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<ICarRepository, CarRepository>();
 builder.Services.AddScoped<IBlogRepository, BlogRepository>();
+builder.Services.AddScoped<ICarPricingRepository, CarPricingRepository>();
 
 builder.Services.AddScoped<GetAboutQueryHandler>();
 builder.Services.AddScoped<GetAboutByIdQueryHandler>();
@@ -53,6 +56,7 @@ builder.Services.AddScoped<UpdateCarCommandHandler>();
 builder.Services.AddScoped<RemoveCarCommandHandler>();
 builder.Services.AddScoped<GetCarWithBrandQueryHandler>();
 builder.Services.AddScoped<GetLast5CarsWithBrandQueryHandler>();
+builder.Services.AddScoped<GetCarsWithPricingQueryHandler>();
 
 builder.Services.AddScoped<GetCategoryQueryHandler>();
 builder.Services.AddScoped<GetCategoryByIdQueryHandler>();

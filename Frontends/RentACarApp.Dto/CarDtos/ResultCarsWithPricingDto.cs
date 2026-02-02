@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RentACarApp.Dto.CarDtos
 {
-    public class ResultCarWithBrandDto
+    public class ResultCarsWithPricingDto
     {
         public int carID { get; set; }
         public int brandID { get; set; }
@@ -19,6 +19,7 @@ namespace RentACarApp.Dto.CarDtos
         public byte luggage { get; set; }
         public string fuelType { get; set; }
         public string bigImageUrl { get; set; }
-     
+        public string pricingName { get; set; }
+        public string pricingAmount { get; set; }
     }
 }

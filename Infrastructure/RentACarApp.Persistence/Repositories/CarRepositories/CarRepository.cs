@@ -21,6 +21,7 @@ namespace RentACarApp.Persistence.Repositories.CarRepositories
                 .ToListAsync();
         }
 
+     
         public async Task<List<Car>> GetLast5CarsWithBrandAsync()
         {
             return await _context.Cars
