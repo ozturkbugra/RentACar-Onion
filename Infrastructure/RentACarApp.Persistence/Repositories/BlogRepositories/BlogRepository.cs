@@ -19,6 +19,14 @@ namespace RentACarApp.Persistence.Repositories.NewFolder
             _context = context;
         }
 
+        public async Task<List<Blog>> GetAllBlogsWithAuthor()
+        {
+            return await _context.Blogs
+                .Include(b => b.Author)
+                .Include(b => b.Category)
+                .ToListAsync();
+        }
+
         public async Task<List<Blog>> GetLast3BlogsWithAuthorsAsync()
         {
             return await _context.Blogs

@@ -22,6 +22,12 @@ namespace RentACarApp.Application.Features.Mappings
             CreateMap<Blog, GetLast3BlogsWithAuthorsQueryResult>()
                         .ForMember(dest => dest.AuthorName,
                                    opt => opt.MapFrom(src => src.Author.Name));
+            CreateMap<Blog, GetAllBlogsWithAuthorQueryResult>()
+                .ForMember(dest => dest.AuthorName,
+                    opt=> opt.MapFrom(src => src.Author.Name))
+                .ForMember(dest => dest.CategoryName,
+                    opt=> opt.MapFrom(src => src.Category.Name));
+                
         }
     }
 }
