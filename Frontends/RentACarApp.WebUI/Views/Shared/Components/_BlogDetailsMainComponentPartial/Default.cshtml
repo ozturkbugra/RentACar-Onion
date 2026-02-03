@@ -10,7 +10,7 @@
     @await Component.InvokeAsync("_BlogDetailTagCloudByBlogComponentPartial" , new {id=ViewBag.BlogId})
     
     
-    @await Component.InvokeAsync("_BlogDetailsAuthorAboutComponentPartial")
+    @await Component.InvokeAsync("_BlogDetailsAuthorAboutComponentPartial", new { authorid = ViewBag.AuthorId })
 
   
 
