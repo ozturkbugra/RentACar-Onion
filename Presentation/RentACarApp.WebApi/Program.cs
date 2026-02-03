@@ -5,6 +5,7 @@ using RentACarApp.Application.Features.CQRS.Handlers.CarHandlers;
 using RentACarApp.Application.Features.CQRS.Handlers.CategoryHandlers;
 using RentACarApp.Application.Features.CQRS.Handlers.ContactHandlers;
 using RentACarApp.Application.Features.Mappings;
+using RentACarApp.Application.Features.RepositoryPattern.CommentRepositories;
 using RentACarApp.Application.Interfaces;
 using RentACarApp.Application.Interfaces.BlogInterfaces;
 using RentACarApp.Application.Interfaces.CarInterfaces;
@@ -15,6 +16,7 @@ using RentACarApp.Persistence.Context;
 using RentACarApp.Persistence.Repositories;
 using RentACarApp.Persistence.Repositories.CarPricingRepositories;
 using RentACarApp.Persistence.Repositories.CarRepositories;
+using RentACarApp.Persistence.Repositories.CommandRepositories;
 using RentACarApp.Persistence.Repositories.NewFolder;
 using RentACarApp.Persistence.Repositories.TagCloudRepositories;
 
@@ -33,6 +35,7 @@ builder.Services.AddScoped<ICarRepository, CarRepository>();
 builder.Services.AddScoped<IBlogRepository, BlogRepository>();
 builder.Services.AddScoped<ICarPricingRepository, CarPricingRepository>();
 builder.Services.AddScoped<ITagCloudRepository, TagCloudRepository>();
+builder.Services.AddScoped(typeof(IGenericRepository<>),typeof(CommentRepository<>));
 
 builder.Services.AddScoped<GetAboutQueryHandler>();
 builder.Services.AddScoped<GetAboutByIdQueryHandler>();
