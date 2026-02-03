@@ -51,5 +51,12 @@ namespace RentACarApp.WebApi.Controllers
             await _mediator.Send(new RemoveTagCloudCommand(id));
             return Ok("Tag Cloud silindi");
         }
+
+        [HttpGet("GetBlogByIdTagCloudList")]
+        public async Task<IActionResult> GetBlogByIdTagCloudList(int id)
+        {
+            var values = await _mediator.Send(new GetBlogByIdTagCloudListQuery(id));
+            return Ok(values);
+        }
     }
 }

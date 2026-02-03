@@ -16,6 +16,7 @@ namespace RentACarApp.Application.Features.Mappings
         {
             CreateMap<TagCloud, GetTagCloudQueryResult>();
             CreateMap<TagCloud, GetTagCloudByIdQueryResult>();
+            CreateMap<TagCloud, GetBlogByIdTagCloudListQueryResult>();
             CreateMap<CreateTagCloudCommand, TagCloud>();
             CreateMap<UpdateTagCloudCommand, TagCloud>();
         }
