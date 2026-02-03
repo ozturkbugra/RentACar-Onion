@@ -29,6 +29,7 @@ namespace RentACarApp.WebUI.Controllers
 
         public async Task<IActionResult> Detail(int id)
         {
+            ViewBag.BlogId = id;
             return View();
         }
     }
