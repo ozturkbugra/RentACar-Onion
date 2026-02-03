@@ -16,5 +16,6 @@ namespace RentACarApp.Dto.BlogDtos
         public string coverImageUrl { get; set; }
         public DateTime createdDate { get; set; }
         public int categoryID { get; set; }
+        public string description { get; set; }
     }
 }
