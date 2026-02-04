@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using RentACarApp.Dto.BrandDtos;
 using RentACarApp.Dto.CarDtos;
+using System.Net.Http;
 using System.Text;
 
 namespace RentACarApp.WebUI.Controllers
@@ -61,5 +62,12 @@ namespace RentACarApp.WebUI.Controllers
             return View();
         }
 
+        public async Task<IActionResult> RemoveCar(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.DeleteAsync("https://localhost:7066/api/Cars/"+id);
+            return RedirectToAction("Index");
+
+        }
     }
 }
