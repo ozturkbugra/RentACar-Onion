@@ -8,7 +8,7 @@
     <div class="card-body">
 
         <h4 class="card-title">Araç Ekle</h4>
-        <form>
+        <form method="post">
             <div class="form-group">
                 <label for="exampleInputEmail1">Marka</label>
                 @Html.DropDownListFor(x=> x.brandID,(List<SelectListItem>)ViewBag.BrandValues,new{@class = "form-control"})
