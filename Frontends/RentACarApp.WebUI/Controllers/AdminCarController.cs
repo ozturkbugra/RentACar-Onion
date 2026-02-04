@@ -53,7 +53,7 @@ namespace RentACarApp.WebUI.Controllers
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createCarDto);
-            StringContent stringContent = new StringContent(jsonData,Encoding.UTF8,"application/json");
+            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PostAsync("https://localhost:7066/api/Cars", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
@@ -65,9 +65,49 @@ namespace RentACarApp.WebUI.Controllers
         public async Task<IActionResult> RemoveCar(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync("https://localhost:7066/api/Cars/"+id);
+            var responseMessage = await client.DeleteAsync("https://localhost:7066/api/Cars/" + id);
             return RedirectToAction("Index");
 
+        }
+        public async Task<IActionResult> UpdateCar(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage1 = await client.GetAsync("https://localhost:7066/api/Brands");
+            if (responseMessage1.IsSuccessStatusCode)
+            {
+                var jsonData1 = await responseMessage1.Content.ReadAsStringAsync();
+                var values1 = JsonConvert.DeserializeObject<List<ResultBrandDto>>(jsonData1);
+                List<SelectListItem> brandValues = (from x in values1
+                                                    select new SelectListItem
+                                                    {
+                                                        Text = x.name,
+                                                        Value = x.brandID.ToString()
+                                                    }).ToList();
+                ViewBag.BrandValues = brandValues;
+            }
+
+            var responseMessage = await client.GetAsync("https://localhost:7066/api/Cars/" + id);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<UpdateCarDto>(jsonData);
+                return View(values);
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateCar(UpdateCarDto updateCarDto)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var JsonData = JsonConvert.SerializeObject(updateCarDto);
+            StringContent stringContent = new StringContent(JsonData,Encoding.UTF8,"application/json");
+            var responseMessage = await client.PutAsync("https://localhost:7066/api/Cars", stringContent);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(updateCarDto);
         }
     }
 }

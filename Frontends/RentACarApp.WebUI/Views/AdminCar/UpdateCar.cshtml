@@ -1,0 +1,55 @@
+﻿@model UpdateCarDto
+@{
+    ViewData["Title"] = "UpdateCar";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="card container">
+    <div class="card-body">
+
+        <h4 class="card-title">Araç Güncelle</h4>
+        <form method="post">
+            <input type="hidden" asp-for="carID"/>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Marka</label>
+                @Html.DropDownListFor(x => x.brandID, (List<SelectListItem>)ViewBag.BrandValues, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="exampleInputModel">Model</label>
+                <input asp-for="model" class="form-control" placeholder="Model">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputModel"> Kapak Fotoğrafı</label>
+                <input type="text" asp-for="coverImageUrl" class="form-control" placeholder="Link gir">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputModel">KM</label>
+                <input asp-for="kM" class="form-control" placeholder="KM">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputModel">Vites Türü</label>
+                <input asp-for="transmission" class="form-control" placeholder="Vites Türü">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputModel">Araba Kapasitesi</label>
+                <input asp-for="seat" class="form-control" placeholder="Kapasite">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputModel">Bagaj Kapasitesi</label>
+                <input asp-for="luggage" class="form-control" placeholder="Bagaj">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputModel">Yakıt Türü</label>
+                <input asp-for="fuelType" class="form-control" placeholder="Yakıt Türü">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputModel">Büyük Fotoğraf</label>
+                <input asp-for="bigImageUrl" class="form-control" placeholder="Model">
+            </div>
+
+            <button type="submit" class="btn btn-success waves-effect waves-light">Kaydet</button>
+        </form>
+
+    </div>
+</div>
+
