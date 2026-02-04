@@ -13,6 +13,7 @@ namespace RentACarApp.Dto.CarDtos
         public string coverImageUrl { get; set; }
         public int kM { get; set; }
         public string transmission { get; set; }
+
         public byte seat { get; set; }
         public byte luggage { get; set; }
         public string fuelType { get; set; }
