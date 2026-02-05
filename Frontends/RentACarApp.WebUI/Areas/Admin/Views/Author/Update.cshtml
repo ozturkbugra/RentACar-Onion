@@ -1,4 +1,4 @@
-﻿@model ResultAboutDto
+﻿@model ResultAuthorDto
 @{
     ViewData["Title"] = "Update";
     Layout = "~/Views/AdminLayout/Index.cshtml";
@@ -9,13 +9,13 @@
 <div class="card container">
     <div class="card-body">
 
-        <h4 class="card-title">About Güncelle</h4>
+        <h4 class="card-title">Yazar Güncelle</h4>
         <form method="post">
 
             <div class="form-group">
-                <input type="hidden" asp-for="aboutID"/>
-                <label asp-for="title">Başlık</label>
-                <input asp-for="title" class="form-control">
+                <input type="hidden" asp-for="authorID"/>
+                <label asp-for="name">Adı</label>
+                <input asp-for="name" class="form-control">
             </div>
             <div class="form-group">
                 <label asp-for="description">Açıklama</label>
@@ -23,7 +23,7 @@
             </div>
            
             <div class="form-group">
-                <label asp-for="imageUrl">Resim Url</label>
+                <label asp-for="imageUrl">Resim</label>
                 <input asp-for="imageUrl" class="form-control">
             </div>
         
