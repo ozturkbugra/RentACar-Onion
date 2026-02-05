@@ -1,0 +1,61 @@
+﻿@model List<ResultFooterAddressDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 1;
+}
+
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Alt Adres Listesi</h4>
+                <a href="/Admin/FooterAddress/Create" class="btn btn-success">Ekle</a>
+
+
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Açıklama</th>
+                                <th>Adres</th>
+                                <th>Telefon</th>
+                                <th>Mail</th>
+                                <th>Sil</th>
+                                <th>Güncelle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th scope="row">@count</th>
+                                    <td>@item.description</td>
+                                    <td>@item.address</td>
+                                    <td>@item.phone</td>
+                                    <td>@item.email</td>
+                                    <td><a href="/Admin/FooterAddress/Remove/@item.footerAddressID" class="btn btn-danger">Sil</a></td>
+                                    <td><a href="/Admin/FooterAddress/Update/@item.footerAddressID" class="btn btn-warning">Güncelle</a></td>
+
+                                </tr>
+
+                                count++;
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <!-- end card-body-->
+        </div>
+        <!-- end card -->
+
+    </div>
+    <!-- end col -->
+
+</div>

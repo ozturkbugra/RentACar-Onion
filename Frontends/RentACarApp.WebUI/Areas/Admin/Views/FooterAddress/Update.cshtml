@@ -1,0 +1,46 @@
+﻿@model ResultFooterAddressDto
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+
+
+<div class="card container">
+    <div class="card-body">
+
+        <h4 class="card-title">Alt Adres Güncelle</h4>
+        <form method="post">
+
+            
+             <div class="form-group">
+                <input type="hidden" asp-for="footerAddressID" />
+
+                <label asp-for="description">Açıklama</label>
+                <input asp-for="description" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label asp-for="address">Adres</label>
+                <input asp-for="address" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label asp-for="phone">Telefon</label>
+                <input asp-for="phone" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label asp-for="email">Mail</label>
+                <input asp-for="email" class="form-control">
+            </div>
+           
+
+
+
+            <button type="submit" class="btn btn-warning waves-effect waves-light">Güncelle</button>
+        </form>
+
+    </div>
+</div>
+
