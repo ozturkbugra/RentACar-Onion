@@ -1,0 +1,66 @@
+﻿@model List<ResultCommentDto>
+
+
+@{
+    ViewData["Title"] = "CommentList";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 1;
+}
+
+
+        public int commentID { get; set; }
+        public string name { get; set; }
+        public DateTime createdDate { get; set; }
+        public string description { get; set; }
+        public int blogID { get; set; }
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Yorum Listesi</h4>
+                <a href="/Admin/Blog/Create" class="btn btn-success">Ekle</a>
+
+
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Ad Soyad</th>
+                                <th>Yorum</th>
+                                <th>Tarih</th>
+                                <th>Blog ID</th>
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th scope="row">@count</th>
+                                    <td>@item.name</td>
+                                    <td>@item.description</td>
+                                    <td>@item.createdDate.ToString("dd/MM/yyyy")</td>
+                                    <td>@item.blogID</td>
+                                  
+                                </tr>
+
+                                count++;
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <!-- end card-body-->
+        </div>
+        <!-- end card -->
+
+    </div>
+    <!-- end col -->
+
+</div>

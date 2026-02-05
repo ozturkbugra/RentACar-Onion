@@ -51,5 +51,12 @@ namespace RentACarApp.WebApi.Controllers
             return Ok(values);
         }
 
+        [HttpGet("CommentListByBlog/{id}")]
+        public IActionResult CommentListByBlog(int id)
+        {
+            var values = _repository.GetCommentsByBlogId(id);
+            return Ok(values);
+        }
+
     }
 }

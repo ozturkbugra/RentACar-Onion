@@ -1,0 +1,62 @@
+﻿@model List<ResultBlogDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 1;
+}
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Blog Listesi</h4>
+                <a href="/Admin/Blog/Create" class="btn btn-success">Ekle</a>
+
+
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Başlık</th>
+                                <th>Yazar</th>
+                                <th>Kategori</th>
+                                <th>Tarih</th>
+                                <th>Sil</th>
+                                <th>Bloga git</th>
+                                <th>Yorumlara git</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th scope="row">@count</th>
+                                    <td>@item.title</td>
+                                    <td>@item.authorName</td>
+                                    <td>@item.categoryName</td>
+                                    <td>@item.createdDate.ToString("dd/MM/yyyy")</td>
+                                    <td><a href="/Admin/Blog/Remove/@item.blogID" class="btn btn-danger">Sil</a></td>
+                                    <td><a href="/Blog/Detail/@item.blogID" class="btn btn-primary">Bloga git</a></td>
+                                    <td><a href="/Admin/Comment/CommentListByBlogID/@item.blogID" class="btn btn-info">Yorumlara git</a></td>
+
+                                </tr>
+
+                                count++;
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <!-- end card-body-->
+        </div>
+        <!-- end card -->
+
+    </div>
+    <!-- end col -->
+
+</div>

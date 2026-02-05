@@ -13,5 +13,7 @@ namespace RentACarApp.Application.Features.RepositoryPattern.CommentRepositories
         void Update(T entity);
         void Remove(int id);
         T GetById(int id);
+
+        List<T> GetCommentsByBlogId(int id);
     }
 }

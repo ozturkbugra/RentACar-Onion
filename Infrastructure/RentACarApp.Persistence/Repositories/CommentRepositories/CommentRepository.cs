@@ -40,6 +40,11 @@ namespace RentACarApp.Persistence.Repositories.CommandRepositories
             return _context.Comments.Find(id);
         }
 
+        public List<Comment> GetCommentsByBlogId(int id)
+        {
+            return _context.Set<Comment>().Where(x=> x.BlogID == id).ToList();
+        }
+
         public void Remove(int id)
         {
             var value = _context.Comments.Find(id);
