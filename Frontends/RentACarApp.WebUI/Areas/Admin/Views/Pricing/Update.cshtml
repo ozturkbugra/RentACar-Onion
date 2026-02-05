@@ -1,0 +1,31 @@
+﻿@model ResultPricingDto
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+
+
+<div class="card container">
+    <div class="card-body">
+
+        <h4 class="card-title">Ödeme Periyodu Güncelle</h4>
+        <form method="post">
+
+            <div class="form-group">
+                <input type="hidden" asp-for="pricingID"/>
+                <label asp-for="name">Adı</label>
+                <input asp-for="name" class="form-control">
+            </div>
+            
+        
+           
+
+
+
+            <button type="submit" class="btn btn-warning waves-effect waves-light">Güncelle</button>
+        </form>
+
+    </div>
+</div>
+
