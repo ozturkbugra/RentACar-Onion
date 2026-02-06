@@ -10,5 +10,7 @@ namespace RentACarApp.Application.Interfaces.CarPricingInterfaces
     public interface ICarPricingRepository
     {
         Task<List<CarPricing>> GetCarsWithPricingsAsync();
+
+        decimal AvgCarPricingDaily();
     }
 }

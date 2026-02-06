@@ -101,5 +101,12 @@ namespace RentACarApp.WebApi.Controllers
             return Ok(values);
         }
 
+        [HttpGet("AvgCarPricingDaily")]
+        public async Task<IActionResult> AvgCarPricingDaily()
+        {
+            var values = await _mediator.Send(new AvgCarPricingDailyQuery());
+            return Ok(values);
+        }
+
     }
 }

@@ -18,6 +18,12 @@ namespace RentACarApp.Persistence.Repositories.CarPricingRepositories
         {
             _context = context;
         }
+
+        public decimal AvgCarPricingDaily()
+        {
+            return _context.CarPricings.Where(x=> x.PricingID == 3).Average(x => x.Amount);
+        }
+
         public async Task<List<CarPricing>> GetCarsWithPricingsAsync()
         {
             return await _context.CarPricings
