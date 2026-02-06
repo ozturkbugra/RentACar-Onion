@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RentACarApp.Application.Features.CQRS.Commands.CarCommands;
 using RentACarApp.Application.Features.CQRS.Handlers.CarHandlers;
 using RentACarApp.Application.Features.CQRS.Queries.CarQueries;
+using RentACarApp.Application.Features.Mediator.Queries.StatisticQueries;
 
 namespace RentACarApp.WebApi.Controllers
 {
@@ -19,7 +21,9 @@ namespace RentACarApp.WebApi.Controllers
         private readonly GetLast5CarsWithBrandQueryHandler _getLast5CarsWithBrandQueryHandler;
         private readonly GetCarsWithPricingQueryHandler _getCarsWithPricingQueryHandler;
 
-        public CarsController(CreateCarCommandHandler createCarCommandHandler, UpdateCarCommandHandler updateCarCommandHandler, RemoveCarCommandHandler removeCarCommandHandler, GetCarQueryHandler getCarQueryHandler, GetCarByIdQueryHandler getCarByIdQueryHandler, GetCarWithBrandQueryHandler getCarWithBrandQueryHandler, GetLast5CarsWithBrandQueryHandler getLast5CarsWithBrandQueryHandler, GetCarsWithPricingQueryHandler getCarsWithPricingQueryHandler)
+        private readonly IMediator _mediator;
+
+        public CarsController(CreateCarCommandHandler createCarCommandHandler, UpdateCarCommandHandler updateCarCommandHandler, RemoveCarCommandHandler removeCarCommandHandler, GetCarQueryHandler getCarQueryHandler, GetCarByIdQueryHandler getCarByIdQueryHandler, GetCarWithBrandQueryHandler getCarWithBrandQueryHandler, GetLast5CarsWithBrandQueryHandler getLast5CarsWithBrandQueryHandler, GetCarsWithPricingQueryHandler getCarsWithPricingQueryHandler, IMediator mediator)
         {
             _createCarCommandHandler = createCarCommandHandler;
             _updateCarCommandHandler = updateCarCommandHandler;
@@ -29,6 +33,7 @@ namespace RentACarApp.WebApi.Controllers
             _getCarWithBrandQueryHandler = getCarWithBrandQueryHandler;
             _getLast5CarsWithBrandQueryHandler = getLast5CarsWithBrandQueryHandler;
             _getCarsWithPricingQueryHandler = getCarsWithPricingQueryHandler;
+            _mediator = mediator;
         }
 
         [HttpGet]
@@ -86,6 +91,13 @@ namespace RentACarApp.WebApi.Controllers
         public async Task<IActionResult> GetCarsWithPricing()
         {
             var values = await _getCarsWithPricingQueryHandler.Handle();
+            return Ok(values);
+        }
+
+        [HttpGet("GetCarCount")]
+        public async Task<IActionResult> GetCarCount()
+        {
+            var values = await _mediator.Send(new GetCarCountQuery());
             return Ok(values);
         }
 
