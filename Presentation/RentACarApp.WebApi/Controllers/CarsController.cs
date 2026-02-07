@@ -21,9 +21,7 @@ namespace RentACarApp.WebApi.Controllers
         private readonly GetLast5CarsWithBrandQueryHandler _getLast5CarsWithBrandQueryHandler;
         private readonly GetCarsWithPricingQueryHandler _getCarsWithPricingQueryHandler;
 
-        private readonly IMediator _mediator;
-
-        public CarsController(CreateCarCommandHandler createCarCommandHandler, UpdateCarCommandHandler updateCarCommandHandler, RemoveCarCommandHandler removeCarCommandHandler, GetCarQueryHandler getCarQueryHandler, GetCarByIdQueryHandler getCarByIdQueryHandler, GetCarWithBrandQueryHandler getCarWithBrandQueryHandler, GetLast5CarsWithBrandQueryHandler getLast5CarsWithBrandQueryHandler, GetCarsWithPricingQueryHandler getCarsWithPricingQueryHandler, IMediator mediator)
+        public CarsController(CreateCarCommandHandler createCarCommandHandler, UpdateCarCommandHandler updateCarCommandHandler, RemoveCarCommandHandler removeCarCommandHandler, GetCarQueryHandler getCarQueryHandler, GetCarByIdQueryHandler getCarByIdQueryHandler, GetCarWithBrandQueryHandler getCarWithBrandQueryHandler, GetLast5CarsWithBrandQueryHandler getLast5CarsWithBrandQueryHandler, GetCarsWithPricingQueryHandler getCarsWithPricingQueryHandler)
         {
             _createCarCommandHandler = createCarCommandHandler;
             _updateCarCommandHandler = updateCarCommandHandler;
@@ -33,7 +31,6 @@ namespace RentACarApp.WebApi.Controllers
             _getCarWithBrandQueryHandler = getCarWithBrandQueryHandler;
             _getLast5CarsWithBrandQueryHandler = getLast5CarsWithBrandQueryHandler;
             _getCarsWithPricingQueryHandler = getCarsWithPricingQueryHandler;
-            _mediator = mediator;
         }
 
         [HttpGet]
@@ -94,19 +91,7 @@ namespace RentACarApp.WebApi.Controllers
             return Ok(values);
         }
 
-        [HttpGet("GetCarCount")]
-        public async Task<IActionResult> GetCarCount()
-        {
-            var values = await _mediator.Send(new GetCarCountQuery());
-            return Ok(values);
-        }
-
-        [HttpGet("AvgCarPricingDaily")]
-        public async Task<IActionResult> AvgCarPricingDaily()
-        {
-            var values = await _mediator.Send(new AvgCarPricingDailyQuery());
-            return Ok(values);
-        }
+        
 
     }
 }
