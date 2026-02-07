@@ -17,6 +17,11 @@ namespace RentACarApp.Persistence.Repositories.BrandRepositories
             _context = context;
         }
 
+        public int BrandCount()
+        {
+            return _context.Brands.Count();
+        }
+
         public string MaxCarByBrand()
         {
             return _context.Brands

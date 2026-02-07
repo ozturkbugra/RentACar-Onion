@@ -37,6 +37,13 @@ namespace RentACarApp.WebApi.Controllers
             return Ok(values);
         }
 
+        [HttpGet("BrandCount")]
+        public async Task<IActionResult> BrandCount()
+        {
+            var values = await _mediator.Send(new BrandCountQuery());
+            return Ok(values);
+        }
+
 
 
 

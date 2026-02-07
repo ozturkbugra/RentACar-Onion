@@ -9,5 +9,6 @@ namespace RentACarApp.Application.Interfaces.BrandInterfaces
     public interface IBrandRepository
     {
         string MaxCarByBrand();
+        int BrandCount();
     }
 }
