@@ -32,11 +32,13 @@ namespace RentACarApp.Persistence.Repositories.CarPricingRepositories
                          select new GetCarPricingWithTimePeriodQueryResult
                          {
                              // Model Adı: Marka + Model (Örn: Mercedes CLA 200)
-                             Model = g.Select(y => y.Car.Brand.Name + " " + y.Car.Model).FirstOrDefault(),
-
+                             Model = g.Select(y => y.Car.Model).FirstOrDefault(),
                              DailyAmount = g.Where(y => y.PricingID == 3).Sum(z => z.Amount),
                              WeeklyAmount = g.Where(y => y.PricingID == 4).Sum(z => z.Amount),
-                             MonthlyAmount = g.Where(y => y.PricingID == 5).Sum(z => z.Amount)
+                             MonthlyAmount = g.Where(y => y.PricingID == 5).Sum(z => z.Amount),
+                             BrandName = g.Select(y => y.Car.Brand.Name).FirstOrDefault(),
+                             CoverImageUrl = g.Select(y => y.Car.CoverImageUrl).FirstOrDefault(),
+                             CarID = g.Select(y=> y.CarID).FirstOrDefault(),
                          };
 
             return values.ToList();
