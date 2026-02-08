@@ -25,6 +25,7 @@ namespace RentACarApp.Application.Features.Mediator.Handlers.ReservationHandlers
         public async Task Handle(CreateReservationCommand request, CancellationToken cancellationToken)
         {
             var reservation = _mapper.Map<Reservation>(request);
+            reservation.Status = "Rezervasyon Alındı";
             await _repository.CreateAsync(reservation);
         }
     }
