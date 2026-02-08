@@ -9,7 +9,7 @@
         <form class="bg-light p-5 contact-form" method="post">
             <h3>Araç Kiralama Formu</h3>
             <div class="form-group">
-                <input type="text" asp-for="@Model.CarID" class="form-control" placeholder="Almak İstediğiniz Araba">
+                <input type="hidden" asp-for="@Model.CarID" value="@ViewBag.CarID" class="form-control" placeholder="Almak İstediğiniz Araba">
             </div>
             <div class="form-group">
                 <input type="text" asp-for="@Model.Name" class="form-control" placeholder="Adınız">

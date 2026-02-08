@@ -16,8 +16,9 @@ namespace RentACarApp.WebUI.Controllers
         {
             _httpClientFactory = httpClientFactory;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int id)
         {
+            ViewBag.CarID = id;
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync("https://localhost:7066/api/Locations");
 
