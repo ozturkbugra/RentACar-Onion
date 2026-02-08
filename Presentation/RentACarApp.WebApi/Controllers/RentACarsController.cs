@@ -16,8 +16,8 @@ namespace RentACarApp.WebApi.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> GetRentACarListByLocation(GetRentACarQuery query)
+        [HttpGet]
+        public async Task<IActionResult> GetRentACarListByLocation([FromQuery] GetRentACarQuery query)
         {
             var values = await _mediator.Send(query);
             return Ok(values);
