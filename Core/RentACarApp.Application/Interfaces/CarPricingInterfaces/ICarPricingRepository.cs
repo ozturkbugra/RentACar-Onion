@@ -1,4 +1,5 @@
-﻿using RentACarApp.Domain.Entities;
+﻿using RentACarApp.Application.Features.Mediator.Results.CarPricingResults;
+using RentACarApp.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace RentACarApp.Application.Interfaces.CarPricingInterfaces
     public interface ICarPricingRepository
     {
         Task<List<CarPricing>> GetCarsWithPricingsAsync();
-
+        List<GetCarPricingWithTimePeriodQueryResult> GetCarPricingWithTimePeriod();
         decimal AvgCarPricingDaily();
     }
 }
