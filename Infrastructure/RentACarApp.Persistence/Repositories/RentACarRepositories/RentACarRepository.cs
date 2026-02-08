@@ -22,8 +22,21 @@ namespace RentACarApp.Persistence.Repositories.RentACarRepositories
 
         public async Task<List<RentACar>> GetByFilterAsync(Expression<Func<RentACar, bool>> filter)
         {
-            var values = await _context.RentACars.Where(filter).ToListAsync();
+            var values = await _context.RentACars
+                .Where(filter)
+                // 1. Önce Arabayı ve onun Markasını dahil edelim
+                .Include(x => x.Car)
+                    .ThenInclude(y => y.Brand)
+
+                // 2. Şimdi Fiyatları Alalım (Tekrar Car üzerinden gidiyoruz)
+                .Include(x => x.Car)
+                    .ThenInclude(z => z.CarPricings) // Car -> CarPricings (Listeye girdik)
+                        .ThenInclude(t => t.Pricing) // CarPricing -> Pricing (Fiyat adına ulaştık: Günlük, Aylık vs.)
+
+                .ToListAsync();
+
             return values;
+
         }
     }
 }

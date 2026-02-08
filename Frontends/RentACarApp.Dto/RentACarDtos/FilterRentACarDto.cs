@@ -9,5 +9,10 @@ namespace RentACarApp.Dto.RentACarDtos
     public class FilterRentACarDto
     {
         public int carID { get; set; }
+        public int brandID { get; set; }
+        public string brandName { get; set; }
+        public string model { get; set; }
+        public string coverImageUrl { get; set; }
+        public decimal amount { get; set; }
     }
 }

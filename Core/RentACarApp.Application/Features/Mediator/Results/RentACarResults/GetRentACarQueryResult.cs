@@ -10,5 +10,11 @@ namespace RentACarApp.Application.Features.Mediator.Results.RentACarResults
     public class GetRentACarQueryResult
     {
         public int CarID { get; set; }
+
+        public int BrandID { get; set; }
+        public string BrandName { get; set; }
+        public string Model { get; set; }
+        public string CoverImageUrl { get; set; }
+        public decimal Amount { get; set; }
     }
 }
