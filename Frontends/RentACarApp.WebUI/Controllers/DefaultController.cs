@@ -30,5 +30,6 @@ namespace RentACarApp.WebUI.Controllers
             ViewBag.Locations = values2;
             return View();
         }
+
     }
 }
