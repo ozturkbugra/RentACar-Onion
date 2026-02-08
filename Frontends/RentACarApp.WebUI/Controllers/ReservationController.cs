@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using RentACarApp.Dto.BannerDtos;
 using RentACarApp.Dto.LocationDtos;
+using RentACarApp.Dto.ReservationDtos;
+using System.Text;
 
 namespace RentACarApp.WebUI.Controllers
 {
@@ -27,6 +30,20 @@ namespace RentACarApp.WebUI.Controllers
                                                 Value = x.locationID.ToString(),
                                             }).ToList();
             ViewBag.Locations = values2;
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Index(CreateReservationDto createReservationDto)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var jsonData = JsonConvert.SerializeObject(createReservationDto);
+            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var responseMessage = await client.PostAsync("https://localhost:7066/api/Reservations", stringContent);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+               return RedirectToAction("Index","Default");
+            }
             return View();
         }
     }
