@@ -34,7 +34,22 @@ namespace RentACarApp.Persistence.Context
         public DbSet<TagCloud> TagClouds { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<RentACar> RentACars { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Reservation>()
+                .HasOne(x => x.PickUpLocation)
+                .WithMany(x => x.PickUpReservation)
+                .HasForeignKey(x => x.PickUpLocationID)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+                
+            modelBuilder.Entity<Reservation>()
+                .HasOne(x => x.DropOffLocation)
+                .WithMany(x => x.DropOffReservation)
+                .HasForeignKey(x => x.DropOffLocationID)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+        }
 
     }
 }
