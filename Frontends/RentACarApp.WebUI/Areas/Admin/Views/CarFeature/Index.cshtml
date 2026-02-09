@@ -10,16 +10,18 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Araba Özellikleri</h4>
-
                 <form method="post">
+                    @* asp-action="Index" otomatik algılanır *@
                     @for (int i = 0; i < Model.Count; i++)
                     {
-                        <input type="hidden" asp-for="@Model[i].carFeatureID"/><br />
-                        <input type="checkbox" asp-for="@Model[i].available" class="form-check-input" />
-                        <label class="form-check-label" for="@Model[i].available">@Model[i].featureName</label>
-
+                        <div class="form-check">
+                            <input type="hidden" asp-for="@Model[i].carFeatureID" />
+                            <input type="hidden" asp-for="@Model[i].featureName" /> @* Adın kaybolmaması için *@
+                            <input type="checkbox" asp-for="@Model[i].available" class="form-check-input" />
+                            <label class="form-check-label">@Model[i].featureName</label>
+                        </div>
                     }
-
+                    <br />
                     <button type="submit" class="btn btn-success mt-3">Özellikleri Kaydet</button>
                 </form>
 

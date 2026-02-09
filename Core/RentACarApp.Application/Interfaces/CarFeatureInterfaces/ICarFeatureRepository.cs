@@ -1,4 +1,5 @@
-﻿using RentACarApp.Domain.Entities;
+﻿using RentACarApp.Application.Features.Mediator.Commands.CarFeatureCommands;
+using RentACarApp.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,10 @@ namespace RentACarApp.Application.Interfaces.CarFeatureInterfaces
     public interface ICarFeatureRepository
     {
         Task<List<CarFeature>> CarFeatureByCarIdList(int id);
+
+        void ChangeCarFeatureAvailableToFalse(int id);
+        void ChangeCarFeatureAvailableToTrue(int id);
+
+
     }
 }

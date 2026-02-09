@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RentACarApp.Application.Features.Mediator.Commands.CarFeatureCommands;
 using RentACarApp.Application.Features.Mediator.Queries.CarFeatureQueries;
 
 namespace RentACarApp.WebApi.Controllers
@@ -22,5 +23,19 @@ namespace RentACarApp.WebApi.Controllers
             var values = await _mediator.Send(new GetCarFeatureByCarIdQuery(id));
             return Ok(values);
         }
+
+        [HttpGet("CarFeatureChangeAvailableToTrue")]
+        public async Task<IActionResult> CarFeatureChangeAvailableToTrue(int id)
+        {
+            await _mediator.Send(new UpdateCarFeatureAvailableChangeTrueCommand(id));
+            return Ok("Güncelleme Yapıldı");
+        }
+        [HttpGet("CarFeatureChangeAvailableToFalse")]
+        public async Task<IActionResult> CarFeatureChangeAvailableToFalse(int id)
+        {
+            await _mediator.Send(new UpdateCarFeatureAvailableChangeFalseCommand(id));
+            return Ok("Güncelleme Yapıldı");
+        }
+
     }
 }

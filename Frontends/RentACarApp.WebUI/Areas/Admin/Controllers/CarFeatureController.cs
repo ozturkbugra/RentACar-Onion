@@ -2,6 +2,8 @@
 using Newtonsoft.Json;
 using RentACarApp.Dto.BlogDtos;
 using RentACarApp.Dto.CarFeatureDtos;
+using RentACarApp.Dto.CategoryDtos;
+using System.Text;
 
 namespace RentACarApp.WebUI.Areas.Admin.Controllers
 {
@@ -28,5 +30,27 @@ namespace RentACarApp.WebUI.Areas.Admin.Controllers
             }
             return View();
         }
+
+        [HttpPost]
+        [Route("Index/{id}")]
+        public async Task<IActionResult> Index(int id, List<ResultListCarFeatureByCarIdDto> dto)
+        {
+            var client = _httpClientFactory.CreateClient();
+
+            foreach (var item in dto)
+            {
+                if (item.available)
+                {
+                    await client.GetAsync("https://localhost:7066/api/CarFeatures/CarFeatureChangeAvailableToTrue?id=" + item.carFeatureID);
+                }
+                else
+                {
+                    await client.GetAsync("https://localhost:7066/api/CarFeatures/CarFeatureChangeAvailableToFalse?id=" + item.carFeatureID);
+                }
+            }
+
+            return RedirectToAction("Index", new { id = id });
+        }
+
     }
 }
