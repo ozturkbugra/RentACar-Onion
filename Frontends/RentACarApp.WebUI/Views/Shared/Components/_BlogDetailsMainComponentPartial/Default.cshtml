@@ -2,26 +2,30 @@
 
 <div class="col-md-8 ftco-animate">
     <h2 class="mb-3">@Model.title</h2>
-   
+
     <p>@Model.description</p>
 
 
 
-    @await Component.InvokeAsync("_BlogDetailTagCloudByBlogComponentPartial" , new {id=ViewBag.BlogId})
-    
-    
+    @await Component.InvokeAsync("_BlogDetailTagCloudByBlogComponentPartial", new { id = ViewBag.BlogId })
+
+
     @await Component.InvokeAsync("_BlogDetailsAuthorAboutComponentPartial", new { authorid = ViewBag.AuthorId })
 
-  
+
 
 
 
     <div class="pt-5 mt-5">
-        
-   
+
+
         @await Component.InvokeAsync("_CommentListByBlogComponentPartial", new { id = ViewBag.BlogId })
 
-        @await Component.InvokeAsync("_AddCommentComponentPartial")
-    </div>
+        @*         @await Component.InvokeAsync("_AddCommentComponentPartial")
+ *@   
+        
+    @await Html.PartialAsync("AddComment")
 
-</div> 
+</div>
+
+</div>

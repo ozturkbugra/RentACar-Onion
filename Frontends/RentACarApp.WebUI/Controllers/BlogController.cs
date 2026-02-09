@@ -33,5 +33,17 @@ namespace RentACarApp.WebUI.Controllers
             ViewBag.AuthorId = authorid;
             return View();
         }
+
+
+        public PartialViewResult AddComment()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public IActionResult AddComment(string p)
+        {
+            return View();
+        }
     }
 }
