@@ -12,5 +12,7 @@ namespace RentACarApp.Dto.CommentDtos
         public string description { get; set; }
         public DateTime createdDate { get; set; }
         public int blogID { get; set; }
+        public string email { get; set; }
+
     }
 }

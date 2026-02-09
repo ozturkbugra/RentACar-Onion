@@ -14,5 +14,7 @@ namespace RentACarApp.Domain.Entities
         public string Description { get; set; }
         public int BlogID { get; set; }
         public Blog Blog { get; set; }
+        public string Email { get; set; }
+
     }
 }
