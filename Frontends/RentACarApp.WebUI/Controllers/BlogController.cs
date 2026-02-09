@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RentACarApp.Dto.BlogDtos;
+using RentACarApp.Dto.BrandDtos;
+using RentACarApp.Dto.CommentDtos;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace RentACarApp.WebUI.Controllers
@@ -41,9 +44,18 @@ namespace RentACarApp.WebUI.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddComment(string p)
+        public async Task<IActionResult> AddComment(CreateCommentDto createCommentDto, int authorid)
         {
-            return View();
+            var client = _httpClientFactory.CreateClient();
+            createCommentDto.createdDate = DateTime.Now;
+            var jsonData = JsonConvert.SerializeObject(createCommentDto);
+            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var responseMessage = await client.PostAsync("https://localhost:7066/api/Comments", stringContent);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Detail", new { id = createCommentDto.blogID, authorid = authorid });
+            }
+            return RedirectToAction("Index");
         }
     }
 }

@@ -24,7 +24,8 @@
         @*         @await Component.InvokeAsync("_AddCommentComponentPartial")
  *@   
         
-    @await Html.PartialAsync("AddComment")
+    @await Html.PartialAsync("AddComment",
+        new CreateCommentDto { blogID = ViewBag.BlogId })
 
 </div>
 
