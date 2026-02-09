@@ -17,6 +17,12 @@ namespace RentACarApp.Persistence.Repositories.CommandRepositories
         {
             _context = context;
         }
+
+        public int CommentsCount(int id)
+        {
+            return _context.Comments.Count(x=> x.BlogID == id);
+        }
+
         public void Create(Comment entity)
         {
             _context.Comments.Add(entity);

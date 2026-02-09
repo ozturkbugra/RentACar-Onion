@@ -15,5 +15,7 @@ namespace RentACarApp.Application.Features.RepositoryPattern.CommentRepositories
         T GetById(int id);
 
         List<T> GetCommentsByBlogId(int id);
+
+        int CommentsCount(int id);
     }
 }

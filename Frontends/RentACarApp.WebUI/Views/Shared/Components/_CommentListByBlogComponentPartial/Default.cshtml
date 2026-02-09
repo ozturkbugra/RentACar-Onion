@@ -1,7 +1,9 @@
-﻿@model List<ResultCommentDto>
+﻿@model CommentListViewModel
+
+<h3 class="mb-5">@Model.CommentCount Yorum</h3>
 
 <ul class="comment-list">
-    @foreach (var item in Model)
+    @foreach (var item in Model.Comments)
     {
         <li class="comment">
             <div class="vcard bio">
