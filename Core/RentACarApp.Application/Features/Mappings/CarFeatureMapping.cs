@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using RentACarApp.Application.Features.Mediator.Commands.CarFeatureCommands;
 using RentACarApp.Application.Features.Mediator.Results.CarFeatureResults;
 using RentACarApp.Domain.Entities;
 using System;
@@ -17,6 +18,7 @@ namespace RentACarApp.Application.Features.Mappings
             .ForMember(dest => dest.FeatureName,
                                    opt => opt.MapFrom(src => src.Feature.Name));
 
+            CreateMap<CreateCarFeatureByCarCommand, CarFeature>();
         }
     }
 }

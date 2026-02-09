@@ -33,5 +33,11 @@ namespace RentACarApp.Persistence.Repositories.CarFeatureRepositories
             values.Available = true;
             _context.SaveChanges();
         }
+
+        public void CreateCarFeatureByCar(CarFeature carFeature)
+        {
+            _context.CarFeatures.Add(carFeature);
+            _context.SaveChanges();
+        }
     }
 }
