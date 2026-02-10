@@ -1,0 +1,84 @@
+﻿@model ResultStatisticDto
+
+
+<div class="row">
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-primary border-primary">
+            <div class="card-body">
+                <div class="mb-4">
+                    <h5 class="card-title mb-0 text-white">Marka Sayısı</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center mb-0 text-white">
+                            @Model.BrandCount
+                        </h2>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div> <!-- end col-->
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-success border-success">
+            <div class="card-body">
+                <div class="mb-4">
+                    <h5 class="card-title mb-0 text-white">Araba Sayısı</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center text-white mb-0">
+                            @Model.CarCount
+                        </h2>
+                    </div>
+                    <div class="col-4 text-right">
+                        <span class="text-white-50">18.71% <i class="mdi mdi-arrow-down"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col-->
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-warning border-warning">
+            <div class="card-body">
+                <div class="mb-4">
+                    <h5 class="card-title mb-0 text-white">Günlük Ortalama Araba Fiyatları</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center text-white mb-0">
+                            @Model.AvgCarPrice.ToString("N2") ₺
+                        </h2>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div> <!-- end col-->
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-info border-info">
+            <div class="card-body">
+                <div class="mb-4">
+                    <h5 class="card-title mb-0 text-white">En Fazla Araç Olan Marka</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center text-white mb-0">
+                            @Model.MaxCarByBrand
+                        </h2>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div> <!-- end col-->
+</div>
