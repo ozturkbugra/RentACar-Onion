@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using RentACarApp.Application.Features.Mediator.Commands.ReviewCommands;
 using RentACarApp.Application.Features.Mediator.Results.ReviewResults;
 using RentACarApp.Domain.Entities;
 using System;
@@ -14,6 +15,8 @@ namespace RentACarApp.Application.Features.Mappings
         public ReviewMapping() {
 
             CreateMap<Review, GetReviewByCarIdQueryResult>();
+            CreateMap<CreateReviewCommand, Review>();
+            CreateMap<UpdateReviewCommand, Review>();
         }
     }
 }

@@ -1,3 +1,6 @@
+using FluentValidation;
+using MediatR;
+using Microsoft.AspNetCore.Diagnostics;
 using RentACarApp.Application.Features.CQRS.Handlers.AboutHandlers;
 using RentACarApp.Application.Features.CQRS.Handlers.BannerHandlers;
 using RentACarApp.Application.Features.CQRS.Handlers.BrandHandlers;
@@ -5,6 +8,7 @@ using RentACarApp.Application.Features.CQRS.Handlers.CarHandlers;
 using RentACarApp.Application.Features.CQRS.Handlers.CategoryHandlers;
 using RentACarApp.Application.Features.CQRS.Handlers.ContactHandlers;
 using RentACarApp.Application.Features.Mappings;
+using RentACarApp.Application.Features.Mediator.Commands.ReviewCommands;
 using RentACarApp.Application.Features.RepositoryPattern.CommentRepositories;
 using RentACarApp.Application.Interfaces;
 using RentACarApp.Application.Interfaces.BlogInterfaces;
@@ -16,6 +20,7 @@ using RentACarApp.Application.Interfaces.RentACarInterfaces;
 using RentACarApp.Application.Interfaces.ReviewInterfaces;
 using RentACarApp.Application.Interfaces.TagCloudInterfaces;
 using RentACarApp.Application.Services;
+using RentACarApp.Application.Validators.ReviewValidators;
 using RentACarApp.Persistence.Context;
 using RentACarApp.Persistence.Repositories;
 using RentACarApp.Persistence.Repositories.BrandRepositories;
@@ -31,6 +36,22 @@ using RentACarApp.Persistence.Repositories.TagCloudRepositories;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+// Assembly içindeki tüm FluentValidation validator'larýný DI container'a ekler
+builder.Services.AddValidatorsFromAssemblyContaining<CreateReviewValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<UpdateReviewValidator>();
+
+
+// MediatR'ý projeye ekler ve ilgili assembly'deki tüm Command/Handler sýnýflarýný register eder
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssembly(typeof(CreateReviewCommand).Assembly);
+    cfg.RegisterServicesFromAssembly(typeof(UpdateReviewCommand).Assembly);
+});
+
+// MediatR pipeline'ýna ValidationBehavior ekler
+// Her request önce validation'dan geçer, hata varsa handler çalýþmaz
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -93,6 +114,26 @@ builder.Services.AddApplicationServices();
 
 var app = builder.Build();
 
+
+// Global hata yakalama kodu
+app.UseExceptionHandler(config =>
+{
+    config.Run(async context =>
+    {
+        var exception = context.Features.Get<IExceptionHandlerFeature>()?.Error;
+
+        if (exception is FluentValidation.ValidationException validationException)
+        {
+            context.Response.StatusCode = 400;
+            await context.Response.WriteAsJsonAsync(new
+            {
+                Errors = validationException.Errors.Select(x => x.ErrorMessage)
+            });
+        }
+    });
+});
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -105,5 +146,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+
 
 app.Run();
