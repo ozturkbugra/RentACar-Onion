@@ -7,7 +7,8 @@
 <section class="ftco-section ftco-car-details">
 	<div class="container">
 	
-		@await Component.InvokeAsync("_CarDetailMainCarFeatureComponentPartial" , new {id = Model.carID})
+		@await Component.InvokeAsync("_CarDetailMainCarFeatureComponentPartial", new { values = Model })
+
 		<div class="row">
 			<div class="col-md-12 pills">
 				<div class="bd-example bd-example-tabs">
