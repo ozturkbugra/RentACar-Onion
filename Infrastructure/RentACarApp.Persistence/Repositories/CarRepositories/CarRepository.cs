@@ -14,6 +14,11 @@ namespace RentACarApp.Persistence.Repositories.CarRepositories
             _context = context;
         }
 
+        public async Task<Car> GetCarByIdWithBrandAsync(int id)
+        {
+            return await _context.Cars.Include(x=> x.Brand).FirstOrDefaultAsync(x=> x.CarID == id);
+        }
+
         public int GetCarCount()
         {
             return _context.Cars.Count();

@@ -2,11 +2,6 @@
 using RentACarApp.Application.Features.CQRS.Commands.CarCommands;
 using RentACarApp.Application.Features.CQRS.Results.CarResults;
 using RentACarApp.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RentACarApp.Application.Features.Mappings
 {
@@ -24,6 +19,10 @@ namespace RentACarApp.Application.Features.Mappings
             CreateMap<Car, GetLast5CarsWithBrandQueryResult>()
                         .ForMember(dest => dest.BrandName,
                                    opt => opt.MapFrom(src => src.Brand.Name));
+
+            CreateMap<Car, GetCarByIdWithBrandQueryResult>()
+                        .ForMember(x => x.BrandName,
+                                   y => y.MapFrom(z=> z.Brand.Name));
            
         }
     }

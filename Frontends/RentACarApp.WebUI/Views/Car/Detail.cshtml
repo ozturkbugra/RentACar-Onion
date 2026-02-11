@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ResultCarWithBrandDto
+@{
 	ViewData["Title"] = "Detail";
 	Layout = "~/Views/UILayout/Index.cshtml";
 }
@@ -6,7 +7,7 @@
 <section class="ftco-section ftco-car-details">
 	<div class="container">
 	
-		@await Component.InvokeAsync("_CarDetailMainCarFeatureComponentPartial")
+		@await Component.InvokeAsync("_CarDetailMainCarFeatureComponentPartial" , new {id = Model.carID})
 		<div class="row">
 			<div class="col-md-12 pills">
 				<div class="bd-example bd-example-tabs">

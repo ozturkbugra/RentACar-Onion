@@ -13,6 +13,8 @@ namespace RentACarApp.Application.Interfaces.CarInterfaces
 
         Task<List<Car>> GetLast5CarsWithBrandAsync();
 
+        Task<Car> GetCarByIdWithBrandAsync(int id);
+
         int GetCarCount();
     }
 }

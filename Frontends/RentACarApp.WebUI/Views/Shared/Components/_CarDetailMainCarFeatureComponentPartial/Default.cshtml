@@ -1,10 +1,12 @@
-﻿<div class="row justify-content-center">
+﻿@model ResultCarWithBrandDto
+
+<div class="row justify-content-center">
 	<div class="col-md-12">
 		<div class="car-details">
-			<div class="img rounded" style="background-image: url(/site/images/bg_1.jpg);"></div>
+			<div class="img rounded" style="background-image: url(@Model.coverImageUrl);"></div>
 			<div class="text text-center">
-				<span class="subheading">test</span>
-				<h2>Mercedes Grand Sedan</h2>
+				<span class="subheading">@Model.brandName</span>
+				<h2>@Model.model</h2>
 			</div>
 		</div>
 	</div>
@@ -18,7 +20,7 @@
 					<div class="text">
 						<h3 class="heading mb-0 pl-3">
 							Mileage
-							<span>40,000</span>
+							<span>@Model.kM</span>
 						</h3>
 					</div>
 				</div>
@@ -33,7 +35,7 @@
 					<div class="text">
 						<h3 class="heading mb-0 pl-3">
 							Transmission
-							<span>Manual</span>
+							<span>@Model.transmission</span>
 						</h3>
 					</div>
 				</div>
@@ -48,7 +50,7 @@
 					<div class="text">
 						<h3 class="heading mb-0 pl-3">
 							Seats
-							<span>5 Adults</span>
+							<span>@Model.seat</span>
 						</h3>
 					</div>
 				</div>
@@ -63,7 +65,7 @@
 					<div class="text">
 						<h3 class="heading mb-0 pl-3">
 							Luggage
-							<span>4 Bags</span>
+							<span>@Model.luggage</span>
 						</h3>
 					</div>
 				</div>
@@ -78,7 +80,7 @@
 					<div class="text">
 						<h3 class="heading mb-0 pl-3">
 							Fuel
-							<span>Petrol</span>
+							<span>@Model.fuelType</span>
 						</h3>
 					</div>
 				</div>
