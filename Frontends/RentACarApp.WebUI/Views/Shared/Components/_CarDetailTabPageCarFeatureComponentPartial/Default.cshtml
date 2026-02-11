@@ -1,0 +1,26 @@
+﻿@model List<ResultListCarFeatureByCarIdDto>
+
+@{
+	var chunkSize = (int)Math.Ceiling(Model.Count / 3.0);
+}
+
+<div class="tab-pane fade show active" id="pills-description">
+	<div class="row">
+
+		@for (int i = 0; i < 3; i++)
+		{
+			<div class="col-md-4">
+				<ul class="features">
+					@foreach (var item in Model.Skip(i * chunkSize).Take(chunkSize))
+					{
+						<li class="@(item.available ? "check" : "remove")">
+							<span class="@(item.available ? "ion-ios-checkmark" : "ion-ios-close")"></span>
+							@item.featureName
+						</li>
+					}
+				</ul>
+			</div>
+		}
+
+	</div>
+</div>
