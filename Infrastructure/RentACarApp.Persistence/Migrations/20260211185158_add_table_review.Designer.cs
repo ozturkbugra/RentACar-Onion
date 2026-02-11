@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RentACarApp.Persistence.Context;
 
@@ -11,9 +12,11 @@ using RentACarApp.Persistence.Context;
 namespace RentACarApp.Persistence.Migrations
 {
     [DbContext(typeof(RentACarAppContext))]
-    partial class RentACarAppContextModelSnapshot : ModelSnapshot
+    [Migration("20260211185158_add_table_review")]
+    partial class add_table_review
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -625,8 +628,9 @@ namespace RentACarApp.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("StarCount")
-                        .HasColumnType("int");
+                    b.Property<string>("StarCount")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ReviewID");
 
