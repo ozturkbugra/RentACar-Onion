@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using RentACarApp.Dto.LocationDtos;
+using System.Net.Http.Headers;
 
 namespace RentACarApp.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class DefaultController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
@@ -16,7 +19,15 @@ namespace RentACarApp.WebUI.Controllers
 
         public async Task<IActionResult> Index()
         {
+            var token = User.Claims.FirstOrDefault(x=> x.Type == "accessToken").Value;
+            if (token == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             var client = _httpClientFactory.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
             var responseMessage = await client.GetAsync("https://localhost:7066/api/Locations");
 
             var jsonData = await responseMessage.Content.ReadAsStringAsync();

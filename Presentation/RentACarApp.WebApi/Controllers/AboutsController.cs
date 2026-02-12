@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RentACarApp.Application.Features.CQRS.Commands.AboutCommands;
 using RentACarApp.Application.Features.CQRS.Handlers.AboutHandlers;

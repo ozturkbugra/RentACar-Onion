@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using NuGet.Common;
 using RentACarApp.Dto.BrandDtos;
 using RentACarApp.Dto.CarDtos;
 using RentACarApp.Dto.FeatureDtos;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace RentACarApp.WebUI.Controllers
@@ -19,7 +21,15 @@ namespace RentACarApp.WebUI.Controllers
 
         public async Task<IActionResult> Index()
         {
+            var token = User.Claims.FirstOrDefault(x => x.Type == "accessToken").Value;
+            if (token == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             var client = _httpClientFactory.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
             var responseMessage = await client.GetAsync("https://localhost:7066/api/Features");
             if (responseMessage.IsSuccessStatusCode)
             {
