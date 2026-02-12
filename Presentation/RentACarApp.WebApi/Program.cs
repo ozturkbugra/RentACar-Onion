@@ -1,13 +1,14 @@
 using FluentValidation;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.IdentityModel.Tokens;
 using RentACarApp.Application.Features.CQRS.Handlers.AboutHandlers;
 using RentACarApp.Application.Features.CQRS.Handlers.BannerHandlers;
 using RentACarApp.Application.Features.CQRS.Handlers.BrandHandlers;
 using RentACarApp.Application.Features.CQRS.Handlers.CarHandlers;
 using RentACarApp.Application.Features.CQRS.Handlers.CategoryHandlers;
 using RentACarApp.Application.Features.CQRS.Handlers.ContactHandlers;
-using RentACarApp.Application.Features.Mappings;
 using RentACarApp.Application.Features.Mediator.Commands.ReviewCommands;
 using RentACarApp.Application.Features.RepositoryPattern.CommentRepositories;
 using RentACarApp.Application.Interfaces;
@@ -32,10 +33,25 @@ using RentACarApp.Persistence.Repositories.NewFolder;
 using RentACarApp.Persistence.Repositories.RentACarRepositories;
 using RentACarApp.Persistence.Repositories.ReviewRepositories;
 using RentACarApp.Persistence.Repositories.TagCloudRepositories;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(
+    opt=>
+    {
+        opt.RequireHttpsMetadata = false;
+        opt.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidAudience = "https://localhost",
+            ValidIssuer = "https://localhost",
+            ClockSkew = TimeSpan.Zero,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("RentACarProject")),
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true
+        };
+    });
 
 // Assembly içindeki tüm FluentValidation validator'larýný DI container'a ekler
 builder.Services.AddValidatorsFromAssemblyContaining<CreateReviewValidator>();
