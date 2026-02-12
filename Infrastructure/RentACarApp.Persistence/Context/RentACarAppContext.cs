@@ -8,9 +8,9 @@ namespace RentACarApp.Persistence.Context
 {
     public class RentACarAppContext: DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public RentACarAppContext(DbContextOptions<RentACarAppContext> options) : base(options)
         {
-            optionsBuilder.UseSqlServer("Server=bugra; Initial Catalog=RentACarAppDB; Integrated Security=true; TrustServerCertificate=True;");
+
         }
 
         public DbSet<About> Abouts { get; set; }   

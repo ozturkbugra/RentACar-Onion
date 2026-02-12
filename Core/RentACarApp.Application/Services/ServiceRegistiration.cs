@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
+using FluentValidation; // Eklendi
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using RentACarApp.Application.Validators.ReviewValidators; // Validator referansı için (herhangi biri olur)
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RentACarApp.Application.Services
 {
@@ -13,10 +11,20 @@ namespace RentACarApp.Application.Services
     {
         public static void AddApplicationServices(this IServiceCollection services)
         {
-            services.AddMediatR(c=> c.RegisterServicesFromAssembly(typeof(ServiceRegistiration).Assembly));
-            
-            // AutoMapper Kaydı
+            // 1. AutoMapper Kaydı
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+            // 2. MediatR Kaydı (Bu satır tüm Handler'ları bulmak için)
+            services.AddMediatR(cfg =>
+            {
+                cfg.RegisterServicesFromAssembly(typeof(ServiceRegistiration).Assembly);
+            });
+
+            // Bu satır, Assembly içindeki tüm Validator sınıflarını (AbstractValidator) bulur.
+            services.AddValidatorsFromAssembly(typeof(ServiceRegistiration).Assembly);
+
+            // 4. Pipeline Behavior (Validation için Araya Girme)
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
         }
     }
 }
