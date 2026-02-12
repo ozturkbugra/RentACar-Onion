@@ -36,9 +36,24 @@ using RentACarApp.Persistence.Repositories.NewFolder;
 using RentACarApp.Persistence.Repositories.RentACarRepositories;
 using RentACarApp.Persistence.Repositories.ReviewRepositories;
 using RentACarApp.Persistence.Repositories.TagCloudRepositories;
+using RentACarApp.WebApi.Hubs;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("CorsPolicy", builder =>
+    {
+        builder.AllowAnyHeader()
+        .AllowAnyMethod()
+        .SetIsOriginAllowed((host) => true)
+        .AllowCredentials();
+    });
+});
+
+builder.Services.AddSignalR();
 
 // Add services to the container.
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(
@@ -162,12 +177,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("CorsPolicy");
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.MapHub<CarHub>("/carhub");
 
 
 app.Run();
