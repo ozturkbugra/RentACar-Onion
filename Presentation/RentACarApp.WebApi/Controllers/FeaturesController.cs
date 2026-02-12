@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RentACarApp.Application.Features.Mediator.Commands.FeatureCommands;
@@ -6,6 +7,7 @@ using RentACarApp.Application.Features.Mediator.Queries.FeatureQueries;
 
 namespace RentACarApp.WebApi.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class FeaturesController : ControllerBase
