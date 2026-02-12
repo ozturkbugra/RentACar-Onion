@@ -10,7 +10,7 @@ namespace RentACarApp.Application.Tools
     {
         public const string ValidAudiance = "https://localhost";
         public const string ValidIssuer = "https://localhost";
-        public const string Key = "RentACarProject";
+        public const string Key = "RentACarProjectSuperSecretKey12345";
         public const int Expire = 3;
     }
 }

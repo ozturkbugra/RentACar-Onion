@@ -12,6 +12,7 @@ using RentACarApp.Application.Features.CQRS.Handlers.ContactHandlers;
 using RentACarApp.Application.Features.Mediator.Commands.ReviewCommands;
 using RentACarApp.Application.Features.RepositoryPattern.CommentRepositories;
 using RentACarApp.Application.Interfaces;
+using RentACarApp.Application.Interfaces.AppUserInterfaces;
 using RentACarApp.Application.Interfaces.BlogInterfaces;
 using RentACarApp.Application.Interfaces.BrandInterfaces;
 using RentACarApp.Application.Interfaces.CarFeatureInterfaces;
@@ -21,9 +22,11 @@ using RentACarApp.Application.Interfaces.RentACarInterfaces;
 using RentACarApp.Application.Interfaces.ReviewInterfaces;
 using RentACarApp.Application.Interfaces.TagCloudInterfaces;
 using RentACarApp.Application.Services;
+using RentACarApp.Application.Tools;
 using RentACarApp.Application.Validators.ReviewValidators;
 using RentACarApp.Persistence.Context;
 using RentACarApp.Persistence.Repositories;
+using RentACarApp.Persistence.Repositories.AppUserRepositories;
 using RentACarApp.Persistence.Repositories.BrandRepositories;
 using RentACarApp.Persistence.Repositories.CarFeatureRepositories;
 using RentACarApp.Persistence.Repositories.CarPricingRepositories;
@@ -44,10 +47,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         opt.RequireHttpsMetadata = false;
         opt.TokenValidationParameters = new TokenValidationParameters
         {
-            ValidAudience = "https://localhost",
-            ValidIssuer = "https://localhost",
+            ValidAudience = JwtTokenDefaults.ValidAudiance,
+            ValidIssuer = JwtTokenDefaults.ValidIssuer,
             ClockSkew = TimeSpan.Zero,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("RentACarProject")),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenDefaults.Key)),
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true
         };
@@ -85,6 +88,8 @@ builder.Services.AddScoped<IRentACarRepository, RentACarRepository>();
 builder.Services.AddScoped<ICarFeatureRepository, CarFeatureRepository>();
 builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 builder.Services.AddScoped(typeof(IGenericRepository<>),typeof(CommentRepository<>));
+builder.Services.AddScoped<IAppUserRepository, AppUserRepository>();
+
 
 builder.Services.AddScoped<GetAboutQueryHandler>();
 builder.Services.AddScoped<GetAboutByIdQueryHandler>();
@@ -158,7 +163,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
