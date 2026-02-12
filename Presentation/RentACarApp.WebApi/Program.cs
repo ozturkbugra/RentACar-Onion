@@ -40,7 +40,7 @@ using RentACarApp.WebApi.Hubs;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddHttpClient();
 
 builder.Services.AddCors(opt =>
 {

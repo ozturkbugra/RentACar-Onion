@@ -1,13 +1,12 @@
-﻿
-@{
+﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
 
-@section Scripts{
+@section Scripts {
     <div class="content">
-    
+
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -19,11 +18,19 @@
                                 $("#connstatus").text(connection.state);
                                 connection.start().then(()=>{
                                     $("#connstatus").text(connection.state);
+                                    setInterval(()=>{
+                                        connection.invoke("SendCarCount");
+
+                                    },1000);
                                 }).catch((err)=> {
                                     console.log(err)
                                 });
+
+                                connection.on("ReceiveCarCount", (value) => {
+                                    $("#carCount").text(value);
+                                });
                             });
-                        
+
                         </script>
                     </div>
                 </div>
@@ -36,4 +43,7 @@
     <div class="col-md-8 offset-2">
         <div class="alert alert-info">Bağlantının Durumu <strong id="connstatus"></strong></div>
     </div>
- </div>
+    <div class="col-md-8 offset-2">
+        <div class="alert alert-success">Araba Sayısı <strong id="carCount"></strong></div>
+    </div>
+</div>
