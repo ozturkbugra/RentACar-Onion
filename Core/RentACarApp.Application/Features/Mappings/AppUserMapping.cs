@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using RentACarApp.Application.Features.Mediator.Commands.AppUserCommands;
 using RentACarApp.Application.Features.Mediator.Results.AppUserResults;
 using RentACarApp.Domain.Entities;
 using System;
@@ -17,6 +18,8 @@ namespace RentACarApp.Application.Features.Mappings
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.AppUserID))
                 .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.AppRole.Name))
                 .ForMember(dest => dest.IsExist, opt => opt.MapFrom(src => true));
+
+            CreateMap<CreateAppUserCommand, AppUser>();
 
         }
     }
